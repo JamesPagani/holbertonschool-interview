@@ -90,10 +90,8 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 			for (j = 0; j < 3; j++)
 			{
 				if (j)
-				{
 					printf(" ");
-					printf("%d", grid1[i][j]);
-				}
+				printf("%d", grid1[i][j]);
 			}
 			printf("\n");
 		}
