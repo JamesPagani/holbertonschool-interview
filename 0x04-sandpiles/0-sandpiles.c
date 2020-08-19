@@ -87,14 +87,16 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		printf("=\n");
 		for (i = 0; i < 3; i++)
 		{
-        		for (j = 0; j < 3; j++)
-        		{
-            			if (j)
-                		printf(" ");
-            			printf("%d", grid1[i][j]);
-        		}
-        		printf("\n");
-    		}
+			for (j = 0; j < 3; j++)
+			{
+				if (j)
+				{
+					printf(" ");
+					printf("%d", grid1[i][j]);
+				}
+			}
+			printf("\n");
+		}
 		sandpile_topple(grid1, grid_check);
 		unstable = stability_check(grid1, grid_check);
 	}
