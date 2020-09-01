@@ -5,8 +5,8 @@ Read from STDIN line by line and compute metrics from 'HTTP Requests'.
 # Imports
 from sys import stdin
 
-# Status code and file size report function
 
+# Status code and file size report function
 def status_report(total_size, status_codes):
     """Print a report of the last ten HTTP requests recieved"""
     print("File size: {}".format(total_size))
