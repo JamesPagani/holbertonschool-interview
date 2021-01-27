@@ -11,13 +11,11 @@ def status_report(total_size, status_codes):
     """Print a report of the last ten HTTP requests recieved"""
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print("{}: {}".format(code, status_codes[code]))
+        print("{}: {}".format(code, status_codes[code]))
 
 # Variables
 total_size = 0
-status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0,
-                "405": 0, "500": 0}
+status_codes = {}
 count = 0
 
 try:
@@ -25,7 +23,11 @@ try:
         # Take the last two items, which are the status code and file size...
         metrics = line.split()[-2:]
 
-        status_codes[metrics[0]] += 1
+        # Create a new key-pair value, if it doesn't exist yet.
+        if metrics[0] not in status_codes:
+            status_codes[metrics[0]] = 1
+        else:
+            status_codes[metrics[0]] += 1
         total_size += int(metrics[1])
         count += 1
 
