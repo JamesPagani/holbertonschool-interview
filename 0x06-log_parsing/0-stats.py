@@ -12,7 +12,7 @@ def status_report(total_size, status_codes):
     print("File size: {}".format(total_size))
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
-        	print("{}: {}".format(code, status_codes[code]))
+            print("{}: {}".format(code, status_codes[code]))
 
 # Variables
 total_size = 0
