@@ -36,5 +36,6 @@ try:
             status_report(total_size, status_codes)
 except KeyboardInterrupt:
     status_report(total_size, status_codes)
+    raise
 finally:
     pass
