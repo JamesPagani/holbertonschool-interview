@@ -35,6 +35,10 @@ try:
         if count % 10 == 0:
             status_report(total_size, status_codes)
 
+    # In case there are not enough lines to trigger the status report...
+    if count % 10 > 0:
+        status_report(total_size, status_codes)
+
 except KeyboardInterrupt:
     status_report(total_size, status_codes)
     raise
