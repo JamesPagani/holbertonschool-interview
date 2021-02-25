@@ -13,21 +13,23 @@ void slide_left(int *line, size_t size)
 
 	for (i = 1; i < (int)size; i++)
 	{
-		j = i;
-		while (line[j - 1] == 0)
+		if (line[i] != 0)
 		{
-			line[j - 1] = line[j];
-			line[j] = 0;
-			j--;
+			j = i;
+			while (line[j - 1] == 0 && j > 0)
+			{
+				line[j - 1] = line[j];
+				line[j] = 0;
+				j--;
+			}
+			if (line[j - 1] == line[j] && j - 1 != limit)
+			{
+				line[j - 1] += line[j];
+				line[j] = 0;
+			}
+			if (line[j - 1] != 0)
+				limit = j - 1;
 		}
-		if (line[j - 1] == line[j] && j - 1 != limit)
-		{
-			line[j - 1] += line[j];
-			line[j] = 0;
-			limit = j - 1;
-		}
-		if (line[j] != 0)
-			limit = j - 1;
 	}
 }
 
@@ -44,20 +46,23 @@ void slide_right(int *line, size_t size)
 
 	for (i = (int)size - 2; i >= 0; i--)
 	{
-		j = i;
-		while (line[j + 1] == 0)
+		if (line[i] != 0)
 		{
-			line[j + 1] = line[j];
-			line[j] = 0;
-			j++;
+			j = i;
+			while (line[j + 1] == 0 && j < (int)size - 1)
+			{
+				line[j + 1] = line[j];
+				line[j] = 0;
+				j++;
+			}
+			if (line[j + 1] == line[j] && j + 1 != limit)
+			{
+				line[j + 1] += line[j];
+				line[j] = 0;
+			}
+			if (line[j + 1] != 0)
+				limit = j + 1;
 		}
-		if (line[j + 1] == line[j] && j + 1 != limit)
-		{
-			line[j + 1] += line[j];
-			line[j] = 0;
-		}
-		if (line[j] != 0)
-			limit = j + 1;
 	}
 }
 
