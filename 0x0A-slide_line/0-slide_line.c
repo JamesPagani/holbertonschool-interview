@@ -20,7 +20,7 @@ void slide_left(int *line, size_t size)
 			line[j] = 0;
 			j--;
 		}
-		if (line[j - 1] == line[j] && j -1 != limit)
+		if (line[j - 1] == line[j] && j - 1 != limit)
 		{
 			line[j - 1] += line[j];
 			line[j] = 0;
