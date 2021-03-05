@@ -18,18 +18,17 @@ int menger_valid(int row, int col, int level, int size)
 	divC = col;
 	divident = size;
 
-	for(i = level; i > 0; i--)
+	for (i = level; i > 0; i--)
 	{
 		divident /=  3;
 		if (divR / divident == 1 && divC / divident == 1)
 		{
-			return 0;
-			break;
+			return (0);
 		}
 		divR %= divident;
 		divC %= divident;
 	}
-	return 1;
+	return (1);
 }
 
 /**
@@ -60,7 +59,5 @@ void menger(int level)
 			}
 			putchar('\n');
 		}
-		
 	}
-	
 }
