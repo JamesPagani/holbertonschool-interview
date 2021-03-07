@@ -3,13 +3,13 @@
 /**
  * rec_division - Divides until the desired amount of digits is reached.
  * @num: Number to divide.
- * @digits: Amount of digits to leave.
- * Return: @num with @digits left.
+ * @factor: Used to determine how many digits this function has to leave.
+ * Return: A reduced @num, with its size determined by @factor.
  */
 unsigned long rec_division(unsigned long num, unsigned long factor)
 {
 	if (num < factor)
-		return num;
+		return (num);
 	return (rec_division(num / 10, factor));
 }
 
