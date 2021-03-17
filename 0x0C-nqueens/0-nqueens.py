@@ -9,10 +9,10 @@ puzzle, given N as a parameter.
 
 import sys
 
-    
+
 def nonAttackCheck(n, queen, board):
     """Detect if there is any queen capable of attacking another one
-    
+
     Args:
         n (int): Size of the board nxn
         queen (int): Queen in the board to evaluate
@@ -31,7 +31,7 @@ def nonAttackCheck(n, queen, board):
         if testQueen is not otherQueen:
             if qRow == otherQueen[0] or qCol == otherQueen[1]:
                 return False
-    
+
     # Diagonal Check
     # Up Left
     cCordinates = [qRow - 1, qCol - 1]
@@ -65,6 +65,7 @@ def nonAttackCheck(n, queen, board):
     # print("Passed the test")
     return True
 
+
 def nqueens(n, board=[]):
     """Print all posible solutions to the N Queens puzzle
 
@@ -89,7 +90,7 @@ def nqueens(n, board=[]):
         # print(partialBoard)
         if nonAttackCheck(n, row, partialBoard):
             nqueens(n, partialBoard)
-    
+
     return
 
 
