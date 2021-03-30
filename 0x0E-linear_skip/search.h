@@ -29,6 +29,8 @@ typedef struct skiplist_s
 skiplist_t *create_skiplist(int *array, size_t size);
 void print_skiplist(const skiplist_t *list);
 void free_skiplist(skiplist_t *list);
+void print_info(skiplist_t *n);
+skiplist_t *express_skip(skiplist_t *head, int value);
 skiplist_t *linear_skip(skiplist_t *head, int value);
 
 #endif /* _SEARCH_H_ */
