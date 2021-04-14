@@ -27,19 +27,22 @@ def rain(walls):
             waterRetained += w * h
             occupiedSpaces += (w * h)
             wallIdx = i
+        occupiedSpaces += walls[i]
         if walls[i] >= walls[highIdx]:
+            occupiedSpaces -= walls[i]
             h = walls[highIdx] if walls[highIdx] <= walls[i] else walls[i]
             w = abs(i - highIdx - 1)
-            if (w * h) - occupiedSpaces > waterRetained:
+            if (w * h) - occupiedSpaces > 0:
                 waterRetained += (w * h) - occupiedSpaces
             occupiedSpaces = 0
             highIdx = i
-        occupiedSpaces += walls[i]
 
+    # When no other higher wall is found
     if highIdx != wallIdx:
+        occupiedSpaces -= walls[wallIdx]
         h = walls[wallIdx]
-        w = abs(i - highIdx - 1)
-        if (w * h) - occupiedSpaces > waterRetained:
+        w = abs(wallIdx - highIdx - 1)
+        if (w * h) - occupiedSpaces > 0:
             waterRetained += (w * h) - ocupiedSpaces
 
     return waterRetained
