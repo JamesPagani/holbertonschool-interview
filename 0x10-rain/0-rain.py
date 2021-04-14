@@ -1,7 +1,13 @@
 #!/usr/bin/python3
+"""Rain.
+
+Given a list of non-negative integers representing walls of width 1,
+calculate how much water will be retained after it rains.
+"""
 
 
 def rain(walls):
+    """Calculate the amount of water retained after it rains."""
     highIdx = 0
     wallIdx = 0
     occupiedSpaces = 0
