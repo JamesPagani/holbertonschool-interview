@@ -29,12 +29,13 @@ skiplist_t *express_skip(skiplist_t *list, int value)
 		i_idx = (int)i->index;
 		j_idx = (int)j->index;
 		print_info(i);
-		if (i->n > value)
+		if (i->n >= value)
 			break;
 	}
 	if (i->n < value)
 	{
 		j_idx = i_idx;
+		j = i;
 		while (i->next != NULL)
 			i = i->next;
 		i_idx = i->index;

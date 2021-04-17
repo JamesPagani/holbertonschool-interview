@@ -1,4 +1,6 @@
 *-main.c
 *_skiplist.c
-0-linear_skip
+*-linear_skip
 *.swp
+.vscode
+skiplist/
