@@ -47,16 +47,20 @@ def count_words(subreddit, word_list):
     - word_list (list): A list of strings filled with keywords.
     """
     req_info = subreddit.split()
+    print(req_info)
     keywords = setKeywords(word_list)
+    count = 0
 
     # Making the Request
     url = "https://www.reddit.com/r/{}/hot.json".format(req_info[0])
     headers = {
-        "user-agent": "Linux:1fmuwOiskMHGTQ:v0.0.1 (by /u/JamesWulfgaro)"
+        "user-agent": "Linux:1fmuwOiskMHGTQ:v0.0.5 (by /u/JamesWulfgaro)"
         }
-    params = {}
+    params = {"limit": 100}
     if len(req_info) > 1:
-        params["before"] = req_info[1]
+        params["after"] = req_info[1]
+        params["count"] = int(req_info[2])
+        count = params["count"]
     sub_info = requests.get(
         url,
         allow_redirects=False,
@@ -71,6 +75,7 @@ def count_words(subreddit, word_list):
     # Keyword counting
     next_page = sub_info.json().get('data').get('after', None)
     articles = sub_info.json().get('data').get('children')
+    count += len(articles)
     for article in articles:
         for word in article.get('data').get('title').split():
             for keyword in keywords:
@@ -79,12 +84,12 @@ def count_words(subreddit, word_list):
 
     # Print the results if there's no more pages
     if next_page is None:
-        sorted_keywords = sorted(keywords, key=sortRules)
+        sorted_keywords = sorted(keywords, key=sortRules, reverse=True)
         for keyword in sorted_keywords:
             if keyword[1] > 0:
                 print("{}: {}".format(keyword[0], keyword[1]))
         return
 
     # Preparing the next request
-    subreddit = "{} {}".format(subreddit, next_page)
+    subreddit = "{} {} {}".format(req_info[0], next_page, count)
     count_words(subreddit, keywords)
