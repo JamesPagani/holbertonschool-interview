@@ -28,7 +28,7 @@ def setKeywords(word_list):
             if word == lastWord:
                 keywords[len(keywords) - 1][2] += 1
             else:
-                keywords.append([word, 0, 1])
+                keywords.append([word.lower(), 0, 1])
             lastWord = word
     else:
         keywords = word_list
@@ -53,7 +53,7 @@ def count_words(subreddit, word_list):
     # Making the Request
     url = "https://www.reddit.com/r/{}/hot.json".format(req_info[0])
     headers = {
-        "user-agent": "Linux:1fmuwOiskMHGTQ:v0.0.5 (by /u/JamesWulfgaro)"
+        "user-agent": "Linux:1fmuwOiskMHGTQ:v1.0.2 (by /u/JamesWulfgaro)"
         }
     params = {"limit": 100}
     if len(req_info) > 1:
@@ -69,6 +69,7 @@ def count_words(subreddit, word_list):
 
     # If the subreddit does not exist, don't even continue
     if sub_info.status_code != 200:
+        print("\n")
         return
 
     # Keyword counting
@@ -83,10 +84,14 @@ def count_words(subreddit, word_list):
 
     # Print the results if there's no more pages
     if next_page is None:
+        printed_something = False
         sorted_keywords = sorted(keywords, key=sortRules, reverse=True)
         for keyword in sorted_keywords:
             if keyword[1] > 0:
                 print("{}: {}".format(keyword[0], keyword[1]))
+                printed_something = True
+        if not printed_something:
+            print("\n")
         return
 
     # Preparing the next request
