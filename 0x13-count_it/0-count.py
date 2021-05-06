@@ -47,7 +47,6 @@ def count_words(subreddit, word_list):
     - word_list (list): A list of strings filled with keywords.
     """
     req_info = subreddit.split()
-    print(req_info)
     keywords = setKeywords(word_list)
     count = 0
 
