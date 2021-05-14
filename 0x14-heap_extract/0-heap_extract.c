@@ -35,9 +35,9 @@ heap_t *next_node(heap_t *root)
 		return (root);
 
 	if (root->left)
-		left_h = height(root->left);
+		left_h = 1 + height(root->left);
 	if (root->right)
-		right_h = height(root->right);
+		right_h = 1 + height(root->right);
 
 	if (left_h - right_h > 0)
 		return (next_node(root->left));
@@ -67,7 +67,7 @@ void fix_heap(heap_t **root)
 		tmp = next->n;
 		next->n = current->n;
 		current->n = tmp;
-		current = current->left;
+		current = next;
 	}
 }
 
@@ -100,8 +100,8 @@ int heap_extract(heap_t **root)
 	if (replace->right)
 		replace->right->parent = replace;
 
-	root = &replace;
-	free(root_ref);
+	free(*root);
+	*root = replace;
 	fix_heap(root);
 	return (root_val);
 }

@@ -1,2 +1,4 @@
 *-main.c
 *-heap_extract
+binary_tree_print.c
+libheap.a
