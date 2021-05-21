@@ -85,24 +85,26 @@ int heap_extract(heap_t **root)
 	heap_t *replace;
 	int root_val;
 
-	if (root == NULL)
+	if (root == NULL || root_ref == NULL)
 		return (0);
-	replace = next_node(root_ref);
 	root_val = root_ref->n;
+	replace = next_node(root_ref);
 
-	if (replace->parent->left == replace)
-		replace->parent->left = NULL;
-	else
-		replace->parent->right = NULL;
-	replace->parent = NULL;
+	if (replace != root_ref)
+	{
+		if (replace->parent->left == replace)
+			replace->parent->left = NULL;
+		else
+			replace->parent->right = NULL;
+		replace->parent = NULL;
 
-	replace->left = root_ref->left;
-	replace->right = root_ref->right;
-	if (replace->left)
-		replace->left->parent = replace;
-	if (replace->right)
-		replace->right->parent = replace;
-
+		replace->left = root_ref->left;
+		replace->right = root_ref->right;
+		if (replace->left)
+			replace->left->parent = replace;
+		if (replace->right)
+			replace->right->parent = replace;
+	}
 	free(*root);
 	*root = replace;
 	fix_heap(root);
