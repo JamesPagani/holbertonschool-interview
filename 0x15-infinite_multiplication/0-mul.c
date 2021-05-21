@@ -157,5 +157,5 @@ int main(int argc, char *argv[])
 		_putchar(answer[i]);
 	_putchar('\n');
 	free(answer);
-	return (1);
+	return (0);
 }
