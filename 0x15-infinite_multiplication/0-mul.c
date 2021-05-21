@@ -57,6 +57,7 @@ size_t _strlen(char *str)
 /**
  * reset - Reset the value of the number to zero.
  * @num: Number to reset.
+ * @size: Size of the number.
  */
 void reset(char **num, size_t size)
 {
@@ -73,7 +74,6 @@ void reset(char **num, size_t size)
  * @a: Answer number.
  * @b: Partial product result.
  * @size: Size of both numbers.
- * @offset: How many digits to the left must @b be moved.
  */
 void sum(char **a, char *b, size_t size)
 {
