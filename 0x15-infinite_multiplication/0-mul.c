@@ -20,7 +20,7 @@ char *_calloc(size_t size)
 /**
  * print_error - Print an error message and exits the program.
  */
-void print_error()
+void print_error(void)
 {
 	char *error_msg = "Error\n";
 	int i;
@@ -61,6 +61,7 @@ size_t _strlen(char *str)
 void reset(char **num, size_t size)
 {
 	size_t i;
+
 	for (i = 0; i < size; i++)
 	{
 		num[0][i] = '0';
@@ -148,8 +149,10 @@ int main(int argc, char *argv[])
 	answer = mul(argv[1], argv[2]);
 	total_size = _strlen(argv[1]) + _strlen(argv[2]);
 	i = 0;
-	while(answer[i] == '0' && i < total_size)
+	while (answer[i] == '0' && i < total_size)
 		i++;
+	if (i >= total_size)
+		_putchar('0');
 	for (; i < total_size; i++)
 		_putchar(answer[i]);
 	_putchar('\n');
