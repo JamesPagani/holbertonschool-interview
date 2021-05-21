@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	size_t total_size, i;
 	char *answer;
 
-	if (argc < 3)
+	if (argc != 3)
 		print_error();
 
 	answer = mul(argv[1], argv[2]);
