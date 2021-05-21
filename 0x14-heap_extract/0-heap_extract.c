@@ -106,7 +106,12 @@ int heap_extract(heap_t **root)
 			replace->right->parent = replace;
 	}
 	free(*root);
-	*root = replace;
-	fix_heap(root);
+	if (replace != root_ref)
+	{
+		*root = replace;
+		fix_heap(root);
+	}
+	else
+		*root = NULL;
 	return (root_val);
 }
