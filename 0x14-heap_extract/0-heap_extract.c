@@ -56,7 +56,7 @@ void fix_heap(heap_t **root)
 	heap_t *next;
 	int tmp;
 
-	while (current->left != NULL)
+	if (current->left != NULL)
 	{
 		next = current->left;
 		if (current->right)
@@ -64,10 +64,13 @@ void fix_heap(heap_t **root)
 			if (current->right->n > next->n)
 				next = current->right;
 		}
-		tmp = next->n;
-		next->n = current->n;
-		current->n = tmp;
-		current = next;
+		if (next->n > current->n)
+		{
+			tmp = next->n;
+			next->n = current->n;
+			current->n = tmp;
+			fix_heap(&next);
+		}
 	}
 }
 
