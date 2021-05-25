@@ -17,10 +17,7 @@ def rotate_2d_matrix(matrix):
     perim = 4 * (n - 1)
 
     for offset in range(0, n // 2):
-        #print("Offset: {}".format(offset))
-        #print("Perim: {}".format(perim))
         for shifts in range(0, perim + 1 - (n - 2 * offset)):
-            #print("Shift no.: {}".format(shifts))
             i = 0 + offset
             j = 0 + offset
             while j < n - 1 - offset:
