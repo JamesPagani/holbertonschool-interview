@@ -29,7 +29,8 @@ void print_subarray(int *array, size_t start, size_t end)
 void split(int *array, int *tmp, size_t start, size_t end)
 {
 	size_t mid;
-	if(end - start > 1)
+
+	if (end - start > 1)
 	{
 		mid = (end + start) / 2;
 		split(tmp, array, start, mid);
