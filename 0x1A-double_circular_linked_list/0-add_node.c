@@ -2,6 +2,22 @@
 #include "list.h"
 
 /**
+ * copystr - Copy a string from a source to a destination
+ * @src: String to copy.
+ * @dst: Destination string.
+ */
+void copystr(char *src, char *dst)
+{
+	size_t i = 0;
+
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
+/**
  * add_node_end - Add a new node at the end of the list
  * @list: List to modify
  * @str: String to copy into the new node.
@@ -11,12 +27,17 @@ List *add_node_end(List **list, char *str)
 {
 	List *root;
 	List *new;
+	size_t size;
 
 	root = *list;
 	new = malloc(sizeof(List));
 	if (new == NULL)
 		return (NULL);
-	new->str = str;
+	for (size = 0; str[size]; size++);
+	new->str = malloc(sizeof(char) * size);
+	if (new->str == NULL)
+		return (NULL);
+	copystr(str, new->str);
 
 	if (root)
 	{
@@ -38,12 +59,17 @@ List *add_node_begin(List **list, char *str)
 {
 	List *root;
 	List *new;
+	size_t size;
 
 	root = *list;
 	new = malloc(sizeof(List));
 	if (new == NULL)
 		return (NULL);
-	new->str = str;
+	for (size = 0; str[size]; size++);
+	new->str = malloc(sizeof(char) * size);
+	if (new->str == NULL)
+		return (NULL);
+	copystr(str, new->str);
 
 	if (root)
 	{
