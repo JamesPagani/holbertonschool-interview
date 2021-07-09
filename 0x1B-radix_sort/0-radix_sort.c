@@ -37,7 +37,7 @@ void counting_radix(int *array, size_t size, size_t digit)
 			idx /= (target / 10);
 		counting[idx]++;
 	}
-	for (i = 1; i < size; i++)
+	for (i = 1; i < 10; i++)
 	{
 		counting[i] += counting[i - 1];
 	}
