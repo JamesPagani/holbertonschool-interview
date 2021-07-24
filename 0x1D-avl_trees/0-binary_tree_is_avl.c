@@ -52,7 +52,7 @@ int sub_tree_is_avl(const binary_tree_t *root, binary_tree_t *sub)
 		{
 			if (node->left == prev)
 			{
-				if (sub->n > node->n)
+				if (sub->n > node->n || sub->n == node->n)
 					return (0);
 			}
 		}
@@ -60,7 +60,7 @@ int sub_tree_is_avl(const binary_tree_t *root, binary_tree_t *sub)
 		{
 			if (node->right == prev)
 			{
-				if (sub->n <= node->n)
+				if (sub->n <= node->n || sub->n == node->n)
 					return (0);
 			}
 		}
@@ -89,14 +89,19 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 {
 	int balance;
 
+	if (!tree)
+		return (0);
+
 	balance = balance_factor(tree);
 	if (balance > 1 || balance < -1)
 		return (0);
 
-	if (sub_tree_is_avl(tree, tree->left) == 0)
-		return (0);
-	if (sub_tree_is_avl(tree, tree->right) == 0)
-		return (0);
+	if (tree->left)
+		if (sub_tree_is_avl(tree, tree->left) == 0)
+			return (0);
+	if (tree->right)
+		if (sub_tree_is_avl(tree, tree->right) == 0)
+			return (0);
 
 	return (1);
 }
