@@ -7,7 +7,7 @@ Answer file for Algorithm Project 0x1F.
 
 def pascal_triangle(n):
     """pascal_triangle.
-    
+
     Return a pascal tirangle of depth n.
 
     Args:
